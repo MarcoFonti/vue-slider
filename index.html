@@ -22,29 +22,28 @@
 </head>
 <body>
   <div class="container">
-    <div id="carousel">
-      <!-- PREV BOTTONE -->
-      <i id="prev-button" class="bi bi-arrow-left-circle-fill" role="button"></i>
-      <!-- GALLERIA -->
-      <div class="gallery">
-        <figure class="active">
-          <figcaption>
-            <h2>Svezia</h2>
-            <h3>Scandinavia's blend of nature and innovation.</h3>
-          </figcaption>
-          <img src="img/01.jpg" alt="Svezia">
-        </figure>
+    <div id="root">
+      <div id="carousel">
+        <!-- PREV BOTTONE -->
+        <i id="prev-button" class="bi bi-arrow-left-circle-fill" role="button" v-on:click="setIndex('prev')"></i>
+        <!-- GALLERIA -->
+        <div class="gallery">
+          <figure v-for="(element, i) in date" v-show="currentIndex === i" v-on:mouseenter="stopAutoplay" v-on:mouseleave="startAutoplay">
+            <figcaption>
+              <h2>{{element.name}}</h2>
+              <h3>{{element.description}}</h3>
+            </figcaption>
+            <img v-bind:src="`img/${element.image}`" v-bind:alt="element.name">
+          </figure>
+        </div>
+        <!-- NEXT BOTTONE -->
+        <i id="next-button" class="bi bi-arrow-right-circle-fill" role="button" v-on:click="setIndex('next')"></i>
       </div>
-      <!-- NEXT BOTTONE -->
-      <i id="next-button" class="bi bi-arrow-right-circle-fill" role="button"></i>
+      <!-- THUMBNAILS -->
+      <div id="thumbnails">
+        <img v-for="(element, i) in date" v-bind:src="`img/${element.image}`" v-bind:alt="element.name" v-bind:class="{'active': i === currentIndex}" v-on:click="currentIndex = i">
+      </div>
     </div>
-    <!-- THUMBNAILS -->
-    <div id="thumbnails">
-      <img src="img/01.jpg" alt="Svezia" class="active">
-    </div>
-    <!-- <div class="autoplay-controls">
-      <button id="autoplay-button">STOP AUTOPLAY</button>
-    </div> -->
   </div>
 </body>
 </html>
