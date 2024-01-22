@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Slider</title>
+
+  <!-- BOOTSTRAP ICON -->
+  <link rel='stylesheet'
+    href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.2/font/bootstrap-icons.min.css'
+    integrity='sha512-D1liES3uvDpPrgk7vXR/hR/sukGn7EtDWEyvpdLsyalQYq6v6YUsTUJmku7B4rcuQ21rf0UTksw2i/2Pdjbd3g=='
+    crossorigin='anonymous' />
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- VUE -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- DATI -->
+  <script src="js/date.js"></script>
+  <!-- JAVASCRIPT VUE -->
+  <script defer src="js/script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="carousel">
+      <!-- PREV BOTTONE -->
+      <i id="prev-button" class="bi bi-arrow-left-circle-fill" role="button"></i>
+      <!-- GALLERIA -->
+      <div class="gallery">
+        <figure class="active">
+          <figcaption>
+            <h2>Svezia</h2>
+            <h3>Scandinavia's blend of nature and innovation.</h3>
+          </figcaption>
+          <img src="img/01.jpg" alt="Svezia">
+        </figure>
+      </div>
+      <!-- NEXT BOTTONE -->
+      <i id="next-button" class="bi bi-arrow-right-circle-fill" role="button"></i>
+    </div>
+    <!-- THUMBNAILS -->
+    <div id="thumbnails">
+      <img src="img/01.jpg" alt="Svezia" class="active">
+    </div>
+    <!-- <div class="autoplay-controls">
+      <button id="autoplay-button">STOP AUTOPLAY</button>
+    </div> -->
+  </div>
+</body>
+</html>
