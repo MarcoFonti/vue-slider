@@ -28,6 +28,7 @@
         <i id="prev-button" class="bi bi-arrow-left-circle-fill" role="button" v-on:click="setIndex('prev')"></i>
         <!-- GALLERIA -->
         <div class="gallery">
+          <!-- CICLO FOR PER RECUPERARE GLI ELEMENTI E INDICE, CON LA DIRETTIVA V-SHOW MOSTRO L'ELEMENTO SOLO QUANDO CURRENTINDEX E' IDENTICO AL INDICE -->
           <figure v-for="(element, i) in date" v-show="currentIndex === i" v-on:mouseenter="stopAutoplay" v-on:mouseleave="startAutoplay">
             <figcaption>
               <h2>{{element.name}}</h2>
@@ -36,11 +37,12 @@
             <img v-bind:src="`img/${element.image}`" v-bind:alt="element.name">
           </figure>
         </div>
-        <!-- NEXT BOTTONE -->
+        <!-- AL CLICK DEL BOTTONE RICHIAMO LA FUNZIONE -->
         <i id="next-button" class="bi bi-arrow-right-circle-fill" role="button" v-on:click="setIndex('next')"></i>
       </div>
       <!-- THUMBNAILS -->
       <div id="thumbnails">
+        <!-- METTO LA CLASSE ACTIVE SE INDICE DELL'IMMAGINE E' IDENTICO ALL'INDICE DEL CURRENTINDEX -->
         <img v-for="(element, i) in date" v-bind:src="`img/${element.image}`" v-bind:alt="element.name" v-bind:class="{'active': i === currentIndex}" v-on:click="currentIndex = i">
       </div>
     </div>

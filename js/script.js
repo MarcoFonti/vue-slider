@@ -1,89 +1,134 @@
 // CHECK
 console.log('JS VUE OK', Vue);
 
-// ESTRAPOLO FUNZIONE DA VUE
-const {createApp} = Vue;
 
-// CREO VARIBILE E RICHIAMO LA FUNZIONE
-const app = createApp ({
+/* ESTRAPOLO FUNZIONE DA VUE */
+const { createApp } = Vue;
+
+
+/* CREO VARIBILE E RICHIAMO LA FUNZIONE */
+const app = createApp({
+
+
+    /* NOME PAGINA */
     name: 'Carousel',
 
-    // USO DATA CON ALL'INTENRO IL RETURN 
+
+    /* DATI DI BASE DA UTILIZZARE */
     data() {
         return {
-            // DATI 
-           date: destinations,
-           // INDICE
-           currentIndex: 0,
-           // CHIAVE PER FARE L'INTERVALLO 
-           autoplay: null,
+
+
+            /* DATI ARRAY */
+            date: destinations,
+
+
+            /* INDICE DA INCREMENTARE */
+            currentIndex: 0,
+
+
+
+            /* AUTOPLAY IMMAGINI */
+            autoplay: null,
+
         }
+
     },
 
-    // INTERAGISCO CON DATA
+
+    /* UTILIZZO LA FUNZIONE COMPUTED PER INTERAGINRE CON LA FUNZIONE DATA */
     computed: {
 
-        // ULTIMO INDICE
-        lastElement(){
-            return this.date.length -1
+
+        /* CREO UN METODO CHE RESTITUISCE INDICE DELL'ULTIMO ELEMENTO */
+        lastElement() {
+            return this.date.length - 1
         },
 
-        // PRIMO INDICE
-        firstElement(){
+
+        /* CREO UN METODO CHE MI RESTITUISCE TRUE SE IL CURRENTINDEX(INDICE) E' INDENTO A 0 */
+        firstElement() {
             return this.currentIndex === 0
         },
 
-        // QUANDO SONO IDENTITICI
-        indexElement(){
+
+        /* CREO UN METODO CHE MI RESTITUISCE TRUE SE INDICE DI CURRENNTINDEX E' INDENTICO AL METODO CHE MI RESTITUISCE INDICE DELL'ULTIMO ELEMENTO */
+        indexElement() {
             return this.currentIndex === this.lastElement
         }
     },
 
-    // METODO FUNZIONI
+
+    /* CREO FUNZIONI */
     methods: {
 
-        // FUNZIONE IMMAGINI
-        setIndex (position) {
-            // AL BOTTONE NEXT
-            if(position === 'next') {
-                // SE SEI ALLA FINE RIPORTAMI A INDICE 0
-                if(this.indexElement){
+
+        /* CREO UNA FUNZIONE PER PASSARGLI COME ARGOMENTO QUALE BOTTONE L'UTENTE CLICCA (PREV/NEXT) */
+        setIndex(position) {
+
+
+            /* SE COME ARGOMENTO PASSATO AL CLICK DEL BOTTONE E' IDENTCO A NEXT */
+            if (position === 'next') {
+
+
+                /* SE CURRENTINDEX E' INDENTICO ALL'INDICE DELL'ULTIMO ELEMENTO */
+                if (this.indexElement) {
+
+
+                    /* RIPORTA INDICE DI CURRENTINDEX A 0 */
                     this.currentIndex = 0;
-                }
-                // INCREMENTA
-                else {
+
+                    /* ALTRIMENTI */
+                } else {
+
+
+                    /* INCREMENTALO */
                     this.currentIndex++;
+
                 }
-            // AL BOTTONE PREV
+
+
+                /* ALTRIMENTI AL CLICK SUL BOTTONE PREV */
             } else {
-                // SE SEI ALL'INZIO RIPORTAMI A L'ULTIMO INDECE
-                if(this.firstElement) {
+
+
+                /* SE CURRENTINDEX E' 0 */
+                if (this.firstElement) {
+
+
+                    /* RIASSEGNO CURRENTINDEX ALL'INDICE DELL'ULTIMO ELEMENTO  */
                     this.currentIndex = this.lastElement;
-                }
-                // DECREMENTA
-                else {
+
+
+                    /* ALTRIMENTI */
+                } else {
+
+
+                    /* DECREMENTA */
                     this.currentIndex--;
                 }
             }
         },
 
-        // DISATTIVA (STOP) 
-        stopAutoplay(){
+        /* DISATTIVA (STOP) */
+        stopAutoplay() {
             clearInterval(this.autoplay)
         },
 
-        // ATTIVA (AVVIO)
+        /* ATTIVA (AVVIO) */
         startAutoplay() {
             this.autoplay = setInterval(() => {
                 this.setIndex('next')
-            },4000);
+            }, 4000);
         },
 
     },
 
-    // ESEGUI APPENA LA PAGINA SARA' MONTATA
+    /* USO IL METDO MOUNT PER ESEGUIRE UN AZIONE APPENA LA PAGINA SARA' MONTATA */
     mounted() {
-        // ESEGUI STARTAUTOPLAY
+
+
+        /* ESEGUI STARTAUTOPLAY */
         this.startAutoplay();
     },
 })

@@ -1,7 +1,8 @@
 // CHECK
 console.log('JS DATI OK');
 
-// ARRAY DI OGETTI DEI DATI DELLE IMMAGINI 
+
+/* CREO ARRAY DI OGGETTI */
 const destinations = [
     {
       image: '01.jpg',
